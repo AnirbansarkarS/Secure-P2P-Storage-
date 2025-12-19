@@ -1,0 +1,31 @@
+# Core dependencies
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+sqlalchemy==2.0.23
+alembic==1.12.1
+pydantic==2.5.0
+cryptography==41.0.7
+aiohttp==3.9.1
+aiosqlite==0.19.0
+
+# P2P and networking
+libp2p==0.4.0
+multiaddr==0.0.9
+websockets==12.0
+
+# File handling
+pyfec==1.1.0
+filelock==3.13.1
+
+# CLI
+click==8.1.7
+rich==13.7.0
+
+# Development
+pytest==7.4.3
+pytest-asyncio==0.21.1
+black==23.11.0
+mypy==1.7.1
+
+# Optional: Blockchain integration
+web3==6.11.1
