@@ -1,0 +1,25 @@
+coordinator:
+  host: "0.0.0.0"
+  port: 8000
+  database_url: "sqlite:///./data/coordinator.db"
+  max_peers: 1000
+  heartbeat_timeout: 60
+
+node:
+  data_dir: "./data/p2p_node"
+  port: 9000
+  max_storage_gb: 10
+  redundancy_factor: 4
+  shards_total: 20
+  shards_required: 8
+  peer_discovery_interval: 30
+  audit_interval: 300
+
+bootstrap_peers:
+  - "http://node1.example.com:9000"
+  - "http://node2.example.com:9000"
+
+security:
+  min_reputation: 0.5
+  max_upload_size_mb: 100
+  require_encryption: true
