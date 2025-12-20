@@ -1,0 +1,91 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "secure-p2p-storage"
+version = "0.1.0"
+description = "Decentralized secure peer-to-peer storage with end-to-end encryption"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "Your Name", email = "your.email@example.com"}
+]
+keywords = ["p2p", "storage", "encryption", "distributed", "erasure-coding"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: System :: Archiving",
+    "Topic :: Security :: Cryptography",
+]
+
+dependencies = [
+    "fastapi==0.104.1",
+    "uvicorn[standard]==0.24.0",
+    "sqlalchemy==2.0.23",
+    "alembic==1.12.1",
+    "pydantic==2.5.0",
+    "cryptography==41.0.7",
+    "aiohttp==3.9.1",
+    "aiosqlite==0.19.0",
+    "libp2p==0.4.0",
+    "multiaddr==0.0.9",
+    "websockets==12.0",
+    "pyfec==1.1.0",
+    "filelock==3.13.1",
+    "click==8.1.7",
+    "rich==13.7.0",
+    "web3==6.11.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==7.4.3",
+    "pytest-asyncio==0.21.1",
+    "black==23.11.0",
+    "mypy==1.7.1",
+    "flake8==6.1.0",
+    "isort==5.12.0",
+]
+
+[project.scripts]
+p2p-storage = "src.client.cli:cli"
+p2p-coordinator = "src.coordinator.server:start_coordinator"
+
+[project.urls]
+Homepage = "https://github.com/yourusername/Secure-P2P-Storage-"
+Documentation = "https://github.com/yourusername/Secure-P2P-Storage-#readme"
+Repository = "https://github.com/yourusername/Secure-P2P-Storage-.git"
+Issues = "https://github.com/yourusername/Secure-P2P-Storage-/issues"
+
+[tool.setuptools]
+packages = ["src"]
+
+[tool.black]
+line-length = 100
+target-version = ['py38', 'py39', 'py310', 'py311']
+include = '\.pyi?$'
+
+[tool.isort]
+profile = "black"
+line_length = 100
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_classes = "Test*"
+python_functions = "test_*"
+asyncio_mode = "auto"
