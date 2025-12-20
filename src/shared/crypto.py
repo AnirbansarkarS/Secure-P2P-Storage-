@@ -9,7 +9,7 @@ from cryptography.hazmat.primitives import serialization
 from cryptography.exceptions import InvalidTag
 import base64
 import json
-from typing import Tuple, Optional
+from typing import Tuple, Optional, List
 
 class CryptoUtils:
     @staticmethod

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure P2P Storage</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <circle cx="20" cy="20" r="18" stroke="url(#gradient)" stroke-width="2"/>
+                    <path d="M20 10 L20 30 M10 20 L30 20" stroke="url(#gradient)" stroke-width="2" stroke-linecap="round"/>
+                    <defs>
+                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#667eea"/>
+                            <stop offset="100%" style="stop-color:#764ba2"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <h1>Secure P2P Storage</h1>
+            </div>
+            <div class="network-status">
+                <div class="status-indicator" id="statusIndicator"></div>
+                <span id="statusText">Connecting...</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Upload Section -->
+            <section class="card upload-section">
+                <h2>Upload File</h2>
+                <div class="upload-area" id="uploadArea">
+                    <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+                        <path d="M32 16 L32 40 M20 28 L32 16 L44 28" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M16 44 L16 48 C16 50.2091 17.7909 52 20 52 L44 52 C46.2091 52 48 50.2091 48 48 L48 44" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                    </svg>
+                    <p>Drag & drop files here or click to browse</p>
+                    <input type="file" id="fileInput" hidden>
+                </div>
+                
+                <div class="upload-form" id="uploadForm" style="display: none;">
+                    <div class="form-group">
+                        <label>Selected File:</label>
+                        <div class="file-info" id="fileInfo"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="uploadPassword">Encryption Password:</label>
+                        <input type="password" id="uploadPassword" placeholder="Enter a strong password" required>
+                    </div>
+                    <button class="btn btn-primary" id="uploadBtn">
+                        <span>Upload to Network</span>
+                    </button>
+                </div>
+
+                <div class="progress-container" id="uploadProgress" style="display: none;">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="uploadProgressFill"></div>
+                    </div>
+                    <p id="uploadProgressText">Uploading...</p>
+                </div>
+
+                <div class="result-container" id="uploadResult" style="display: none;">
+                    <div class="success-message">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                            <path d="M8 12 L11 15 L16 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>File uploaded successfully!</span>
+                    </div>
+                    <div class="file-hash">
+                        <label>File Hash:</label>
+                        <div class="hash-display">
+                            <code id="uploadedFileHash"></code>
+                            <button class="btn-icon" id="copyHashBtn" title="Copy to clipboard">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                    <rect x="6" y="6" width="10" height="10" stroke="currentColor" stroke-width="1.5" rx="2"/>
+                                    <path d="M4 14 L4 4 L14 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Download Section -->
+            <section class="card download-section">
+                <h2>Download File</h2>
+                <div class="form-group">
+                    <label for="fileHash">File Hash:</label>
+                    <input type="text" id="fileHash" placeholder="Enter file hash" required>
+                </div>
+                <div class="form-group">
+                    <label for="downloadPassword">Decryption Password:</label>
+                    <input type="password" id="downloadPassword" placeholder="Enter password" required>
+                </div>
+                <button class="btn btn-primary" id="downloadBtn">
+                    <span>Download File</span>
+                </button>
+
+                <div class="progress-container" id="downloadProgress" style="display: none;">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="downloadProgressFill"></div>
+                    </div>
+                    <p id="downloadProgressText">Downloading...</p>
+                </div>
+            </section>
+
+            <!-- Network Stats -->
+            <section class="card stats-section">
+                <h2>Network Statistics</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">🌐</div>
+                        <div class="stat-value" id="peerCount">0</div>
+                        <div class="stat-label">Active Peers</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">💾</div>
+                        <div class="stat-value" id="storageUsed">0 GB</div>
+                        <div class="stat-label">Storage Used</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📁</div>
+                        <div class="stat-value" id="fileCount">0</div>
+                        <div class="stat-label">Files Stored</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">⚡</div>
+                        <div class="stat-value" id="networkHealth">100%</div>
+                        <div class="stat-label">Network Health</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Peer List -->
+            <section class="card peers-section">
+                <h2>Connected Peers</h2>
+                <div class="peers-list" id="peersList">
+                    <p class="empty-state">No peers connected yet...</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
