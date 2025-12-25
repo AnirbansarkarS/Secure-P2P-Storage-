@@ -171,6 +171,7 @@ security:
 
 ## 🔐 Security Model
 
+
 ### Encryption
 
 - **Algorithm**: AES-256-GCM (Authenticated Encryption)
