@@ -293,6 +293,16 @@ class StorageManager:
             'available_bytes': self.max_storage_bytes - total_bytes
         }
     
+    def get_available_space(self) -> int:
+        """
+        Get available storage space in bytes
+        
+        Returns:
+            Available bytes
+        """
+        stats = self.get_storage_stats()
+        return stats['available_bytes']
+    
     def garbage_collect(self) -> int:
         """
         Remove expired shards

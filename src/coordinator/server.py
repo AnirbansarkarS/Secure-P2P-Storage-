@@ -5,8 +5,9 @@ from sqlalchemy.orm import Session
 import uvicorn
 from typing import List, Optional
 import logging
+import json
 
-from .models import Base
+from .models import Base, Peer, FileMetadataDB, AuditLog
 from .database import engine, SessionLocal
 from ..shared.schemas import (
     PeerInfo, FileMetadata, StorageRequest, 
