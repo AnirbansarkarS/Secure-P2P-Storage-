@@ -2,6 +2,7 @@ import asyncio
 import aiohttp
 import json
 import logging
+import os
 from typing import Dict, List, Optional, Set
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -33,7 +34,9 @@ class NodeState:
 
 class P2PNode:
     def __init__(self, coordinator_url: str = None):
-        self.coordinator_url = coordinator_url or f"http://{config.coordinator.host}:{config.coordinator.port}"
+        # Use localhost instead of 0.0.0.0 for client connections (Windows compatibility)
+        coordinator_host = "localhost" if config.coordinator.host == "0.0.0.0" else config.coordinator.host
+        self.coordinator_url = coordinator_url or f"http://{coordinator_host}:{config.coordinator.port}"
         self.state = NodeState()
         self.session = None
         
@@ -123,9 +126,12 @@ class P2PNode:
                     capabilities=["storage", "retrieval", "audit"]
                 )
                 
+                # Convert to dict with proper JSON serialization
+                peer_data = peer_info.model_dump(mode='json')
+                
                 response = await session.post(
                     f"{self.coordinator_url}/register",
-                    json=peer_info.dict()
+                    json=peer_data
                 )
                 
                 if response.status == 200:
