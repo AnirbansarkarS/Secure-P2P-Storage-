@@ -6,7 +6,8 @@ import uvicorn
 from typing import List, Optional
 import logging
 
-from .models import Base, engine, SessionLocal
+from .models import Base
+from .database import engine, SessionLocal
 from ..shared.schemas import (
     PeerInfo, FileMetadata, StorageRequest, 
     ChallengeRequest, ProofResponse
