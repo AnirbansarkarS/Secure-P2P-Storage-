@@ -4,7 +4,6 @@ A decentralized, secure peer-to-peer storage system with end-to-end encryption, 
 
 ## ✨ Features
 
-
 - **🔒 End-to-End Encryption**: AES-256-GCM encryption with password-based key derivation
 - **📦 Erasure Coding**: Reed-Solomon encoding (8/20 shards) for data redundancy
 - **🌐 Distributed Storage**: Files split across multiple peers for resilience
