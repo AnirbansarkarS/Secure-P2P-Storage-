@@ -75,7 +75,6 @@ python scripts/start_node.py --port 9002
 ```
 
 **3. Open the Web UI**
-
 ```bash
 # Serve the web directory
 cd web
