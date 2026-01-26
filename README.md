@@ -199,7 +199,6 @@ security:
 - **Max File Size**: 100 MB (configurable)
 
 ## 🧪 Testing
-
 ```bash
 # Run unit tests
 pytest tests/ -v
