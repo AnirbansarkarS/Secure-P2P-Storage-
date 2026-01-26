@@ -226,7 +226,6 @@ Secure-P2P-Storage-/
 ├── scripts/            # Startup scripts
 └── tests/              # Test suite
 ```
-
 ### Adding Features
 
 1. Fork the repository
@@ -261,7 +260,6 @@ Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md)
 ## 📧 Contact
 
 For questions or support, please open an issue on GitHub.
-
 ---
 
 **Built with ❤️ for decentralized storage**
